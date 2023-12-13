@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
 {
-    public partial class FormMainPUSK_KAN : Form
+    public partial class FormMenu : Form
     {
-        public FormMainPUSK_KAN()
+        public FormMenu()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            FormMenu formMenu = new FormMenu();
-            formMenu.Show();
         }
     }
 }
