@@ -60,6 +60,8 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             this.ClientSize = new System.Drawing.Size(612, 422);
             this.Controls.Add(this.labelPUSK_KAN);
             this.Controls.Add(this.button1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormMainPUSK_KAN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Пуск";
