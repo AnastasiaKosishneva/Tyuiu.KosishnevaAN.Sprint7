@@ -18,7 +18,7 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
         {
             InitializeComponent();
         }
-
+        int index;
         private void button1_Click(object sender, EventArgs e)
         {
            //
@@ -35,7 +35,7 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             dataGridViewRabotniki_KAN.ColumnCount = 8;
 
             
-            using (var reader = new StreamReader("encoded-база данных (1).csv"))                 
+            using (var reader = new StreamReader("encoded-база данных (2).csv"))                 
             {
                 while (!reader.EndOfStream)
                 {
@@ -51,23 +51,8 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
 
         private void buttonPLUS_KAN_Click(object sender, EventArgs e)  //СОХРАНЕНИЕ
         {
-            try
-            {
-                //Сохраняем изменения обратно в CSV файл
-                using (var writer = new StreamWriter("encoded-база данных (1).csv"))
-                {
-                    foreach (DataGridViewRow row in dataGridViewRabotniki_KAN.Rows)
-                    {
-                        writer.WriteLine(string.Join(";", Array.ConvertAll(row.Cells.Cast<DataGridViewCell>().ToArray(), cell => cell.Value.ToString())));
-                    }
-                }
-                MessageBox.Show("Данные успешно сохранены!");
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}");
-            }
+            //
+               
         }
 
         private void button1_Click_1(object sender, EventArgs e) // ДОБАВЛЕНИЕ
@@ -81,6 +66,58 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             textBoxDolgn_KAN.Text = "";
             textBoxTel_KAN.Text = "";
             dataGridViewRabotniki_KAN.CurrentCell = dataGridViewRabotniki_KAN.Rows[dataGridViewRabotniki_KAN.Rows.Count - 1].Cells[0];
+        }
+
+        private void buttonPOISK_KAN_Click(object sender, EventArgs e) // ПОИСК
+        {
+            string searchText = textBoxPOISK_KAN.Text.ToLower(); // Приведение введенного текста к нижнему регистру
+
+            // Проверка, является ли строка поиска пустой
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                // Возвращение оригинального стиля для всех ячеек
+                foreach (DataGridViewRow row in dataGridViewRabotniki_KAN.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        cell.Style.BackColor = dataGridViewRabotniki_KAN.DefaultCellStyle.BackColor;
+                        cell.Style.ForeColor = dataGridViewRabotniki_KAN.DefaultCellStyle.ForeColor;
+                    }
+                }
+                return;
+            }
+
+            // Проход по каждой ячейке в dataGridViewPC_SIA
+            foreach (DataGridViewRow row in dataGridViewRabotniki_KAN.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value != null && cell.Value.ToString().ToLower().Contains(searchText))
+                    {
+                        // Подсветка совпадающего слова
+                        cell.Style.BackColor = Color.Silver;
+                        cell.Style.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        // Возвращение оригинального стиля ячейки
+                        cell.Style.BackColor = dataGridViewRabotniki_KAN.DefaultCellStyle.BackColor;
+                        cell.Style.ForeColor = dataGridViewRabotniki_KAN.DefaultCellStyle.ForeColor;
+                    }
+                }
+            }
+        }
+
+        private void button1_Click_2(object sender, EventArgs e) // УДАЛИТЬ 
+        {
+            DialogResult dialogResult = MessageBox.Show("Вы уверенны, что хотите удалить \nвыбранные элементы?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                index = dataGridViewRabotniki_KAN.CurrentCell.RowIndex;
+                dataGridViewRabotniki_KAN.Rows.RemoveAt(index);
+            }
+            ;
         }
     }
     
