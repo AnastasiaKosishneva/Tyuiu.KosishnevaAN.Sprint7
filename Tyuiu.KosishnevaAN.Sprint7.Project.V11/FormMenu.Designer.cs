@@ -29,6 +29,12 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBoxADD_KAN = new System.Windows.Forms.GroupBox();
@@ -78,20 +84,52 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             this.ColumnDZ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnST = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnOBR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBoxKol = new System.Windows.Forms.TextBox();
+            this.textBoxSrdn = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.buttonAnaliz = new System.Windows.Forms.Button();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.buttonAnaliz2 = new System.Windows.Forms.Button();
+            this.textBoxBUG = new System.Windows.Forms.TextBox();
+            this.textBoxSECR = new System.Windows.Forms.TextBox();
+            this.textBoxGEOLOG = new System.Windows.Forms.TextBox();
+            this.textBoxMENEDG = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.buttonChart_KAN = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBoxADD_KAN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRabotniki_KAN)).BeginInit();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.tabControl2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Menu;
+            this.panel1.Controls.Add(this.tabControl2);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.groupBoxADD_KAN);
             this.panel1.Controls.Add(this.buttonADD_KAN);
             this.panel1.Controls.Add(this.buttonDob_VKL);
@@ -104,20 +142,20 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1349, 246);
+            this.panel1.Size = new System.Drawing.Size(1349, 273);
             this.panel1.TabIndex = 0;
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "менеджер",
-            "бухгалтер",
-            "инженер"});
-            this.comboBox1.Location = new System.Drawing.Point(133, 29);
+            "по убыванию",
+            "по возрастанию"});
+            this.comboBox1.Location = new System.Drawing.Point(117, 27);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(131, 24);
             this.comboBox1.TabIndex = 7;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
             // groupBoxADD_KAN
             // 
@@ -140,7 +178,7 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             this.groupBoxADD_KAN.Controls.Add(this.textBoxI_KAN);
             this.groupBoxADD_KAN.Controls.Add(this.textBoxF_KAN);
             this.groupBoxADD_KAN.Enabled = false;
-            this.groupBoxADD_KAN.Location = new System.Drawing.Point(843, 6);
+            this.groupBoxADD_KAN.Location = new System.Drawing.Point(843, 20);
             this.groupBoxADD_KAN.Name = "groupBoxADD_KAN";
             this.groupBoxADD_KAN.Size = new System.Drawing.Size(503, 237);
             this.groupBoxADD_KAN.TabIndex = 6;
@@ -149,7 +187,7 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             // 
             // buttonDob_VKL
             // 
-            this.buttonDob_VKL.Location = new System.Drawing.Point(791, 20);
+            this.buttonDob_VKL.Location = new System.Drawing.Point(791, 25);
             this.buttonDob_VKL.Name = "buttonDob_VKL";
             this.buttonDob_VKL.Size = new System.Drawing.Size(46, 45);
             this.buttonDob_VKL.TabIndex = 7;
@@ -160,7 +198,7 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             // buttonADD_KAN
             // 
             this.buttonADD_KAN.Enabled = false;
-            this.buttonADD_KAN.Location = new System.Drawing.Point(791, 117);
+            this.buttonADD_KAN.Location = new System.Drawing.Point(791, 124);
             this.buttonADD_KAN.Name = "buttonADD_KAN";
             this.buttonADD_KAN.Size = new System.Drawing.Size(46, 45);
             this.buttonADD_KAN.TabIndex = 2;
@@ -180,9 +218,9 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             // 
             // buttonPOISK_KAN
             // 
-            this.buttonPOISK_KAN.Location = new System.Drawing.Point(359, 51);
+            this.buttonPOISK_KAN.Location = new System.Drawing.Point(359, 50);
             this.buttonPOISK_KAN.Name = "buttonPOISK_KAN";
-            this.buttonPOISK_KAN.Size = new System.Drawing.Size(75, 44);
+            this.buttonPOISK_KAN.Size = new System.Drawing.Size(75, 45);
             this.buttonPOISK_KAN.TabIndex = 2;
             this.buttonPOISK_KAN.Text = "поиск";
             this.buttonPOISK_KAN.UseVisualStyleBackColor = true;
@@ -200,12 +238,13 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.button2.Location = new System.Drawing.Point(204, 104);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(230, 70);
             this.button2.TabIndex = 4;
             this.button2.Text = "показать";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBoxPOISK_KAN
@@ -244,11 +283,12 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.panel2.Controls.Add(this.tabControl1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 246);
+            this.panel2.Location = new System.Drawing.Point(0, 273);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1349, 540);
+            this.panel2.Size = new System.Drawing.Size(1349, 513);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -266,10 +306,10 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 8);
+            this.tabControl1.Location = new System.Drawing.Point(12, 6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1325, 529);
+            this.tabControl1.Size = new System.Drawing.Size(1325, 531);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -285,10 +325,12 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.buttonChart_KAN);
+            this.tabPage2.Controls.Add(this.chart1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1317, 500);
+            this.tabPage2.Size = new System.Drawing.Size(1317, 502);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "График";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -439,15 +481,26 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             // 
             // groupBox1
             // 
-            this.groupBox1.Location = new System.Drawing.Point(441, 13);
+            this.groupBox1.Controls.Add(this.buttonAnaliz);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.textBoxSrdn);
+            this.groupBox1.Controls.Add(this.textBoxKol);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(344, 215);
+            this.groupBox1.Size = new System.Drawing.Size(328, 229);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Аналитика";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.comboBox2);
             this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Location = new System.Drawing.Point(12, 181);
@@ -460,15 +513,15 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(284, 29);
+            this.comboBox2.Location = new System.Drawing.Point(254, 27);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(132, 24);
+            this.comboBox2.Size = new System.Drawing.Size(153, 24);
             this.comboBox2.TabIndex = 8;
             // 
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(791, 71);
+            this.button3.Location = new System.Drawing.Point(791, 76);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(46, 40);
             this.button3.TabIndex = 11;
@@ -539,6 +592,253 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             this.ColumnOBR.Name = "ColumnOBR";
             this.ColumnOBR.Width = 125;
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(6, 65);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series2";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series3";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series4";
+            this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
+            this.chart1.Series.Add(series3);
+            this.chart1.Series.Add(series4);
+            this.chart1.Size = new System.Drawing.Size(603, 403);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(130, 18);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(0, 17);
+            this.label11.TabIndex = 9;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(133, 12);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(0, 17);
+            this.label12.TabIndex = 10;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(114, 7);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(119, 17);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "по стажу работы";
+            // 
+            // textBoxKol
+            // 
+            this.textBoxKol.Location = new System.Drawing.Point(224, 58);
+            this.textBoxKol.Name = "textBoxKol";
+            this.textBoxKol.Size = new System.Drawing.Size(100, 22);
+            this.textBoxKol.TabIndex = 0;
+            // 
+            // textBoxSrdn
+            // 
+            this.textBoxSrdn.Location = new System.Drawing.Point(224, 88);
+            this.textBoxSrdn.Name = "textBoxSrdn";
+            this.textBoxSrdn.Size = new System.Drawing.Size(100, 22);
+            this.textBoxSrdn.TabIndex = 1;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(224, 121);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 22);
+            this.textBox3.TabIndex = 2;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 58);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(212, 17);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "общее количество работников";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(67, 91);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(151, 17);
+            this.label15.TabIndex = 4;
+            this.label15.Text = "средний стаж работы";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(137, 113);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(0, 17);
+            this.label16.TabIndex = 5;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(251, 7);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(156, 17);
+            this.label17.TabIndex = 12;
+            this.label17.Text = "фамилии по алфавиту";
+            // 
+            // buttonAnaliz
+            // 
+            this.buttonAnaliz.Location = new System.Drawing.Point(6, 17);
+            this.buttonAnaliz.Name = "buttonAnaliz";
+            this.buttonAnaliz.Size = new System.Drawing.Size(131, 26);
+            this.buttonAnaliz.TabIndex = 6;
+            this.buttonAnaliz.Text = "анализировать";
+            this.buttonAnaliz.UseVisualStyleBackColor = true;
+            this.buttonAnaliz.Click += new System.EventHandler(this.buttonAnaliz_Click);
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage3);
+            this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Location = new System.Drawing.Point(440, 3);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(345, 267);
+            this.tabControl2.TabIndex = 12;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(337, 238);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "общие данные";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.label21);
+            this.tabPage4.Controls.Add(this.label20);
+            this.tabPage4.Controls.Add(this.label19);
+            this.tabPage4.Controls.Add(this.label18);
+            this.tabPage4.Controls.Add(this.textBoxMENEDG);
+            this.tabPage4.Controls.Add(this.textBoxGEOLOG);
+            this.tabPage4.Controls.Add(this.textBoxSECR);
+            this.tabPage4.Controls.Add(this.textBoxBUG);
+            this.tabPage4.Controls.Add(this.buttonAnaliz2);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(337, 238);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "должности";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // buttonAnaliz2
+            // 
+            this.buttonAnaliz2.Location = new System.Drawing.Point(3, 4);
+            this.buttonAnaliz2.Name = "buttonAnaliz2";
+            this.buttonAnaliz2.Size = new System.Drawing.Size(134, 30);
+            this.buttonAnaliz2.TabIndex = 0;
+            this.buttonAnaliz2.Text = "анализировать";
+            this.buttonAnaliz2.UseVisualStyleBackColor = true;
+            this.buttonAnaliz2.Click += new System.EventHandler(this.buttonAnaliz2_Click);
+            // 
+            // textBoxBUG
+            // 
+            this.textBoxBUG.Location = new System.Drawing.Point(143, 45);
+            this.textBoxBUG.Name = "textBoxBUG";
+            this.textBoxBUG.Size = new System.Drawing.Size(72, 22);
+            this.textBoxBUG.TabIndex = 1;
+            // 
+            // textBoxSECR
+            // 
+            this.textBoxSECR.Location = new System.Drawing.Point(143, 82);
+            this.textBoxSECR.Name = "textBoxSECR";
+            this.textBoxSECR.Size = new System.Drawing.Size(72, 22);
+            this.textBoxSECR.TabIndex = 2;
+            // 
+            // textBoxGEOLOG
+            // 
+            this.textBoxGEOLOG.Location = new System.Drawing.Point(143, 120);
+            this.textBoxGEOLOG.Name = "textBoxGEOLOG";
+            this.textBoxGEOLOG.Size = new System.Drawing.Size(72, 22);
+            this.textBoxGEOLOG.TabIndex = 3;
+            this.textBoxGEOLOG.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            // 
+            // textBoxMENEDG
+            // 
+            this.textBoxMENEDG.Location = new System.Drawing.Point(143, 160);
+            this.textBoxMENEDG.Name = "textBoxMENEDG";
+            this.textBoxMENEDG.Size = new System.Drawing.Size(72, 22);
+            this.textBoxMENEDG.TabIndex = 4;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(64, 48);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(73, 17);
+            this.label18.TabIndex = 5;
+            this.label18.Text = "бухгалтер";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(61, 79);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(76, 17);
+            this.label19.TabIndex = 6;
+            this.label19.Text = "секретарь";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(17, 120);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(120, 17);
+            this.label20.TabIndex = 7;
+            this.label20.Text = "геолог-нефтяник";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(61, 156);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(74, 17);
+            this.label21.TabIndex = 8;
+            this.label21.Text = "менеджер";
+            this.label21.Click += new System.EventHandler(this.label21_Click);
+            // 
+            // buttonChart_KAN
+            // 
+            this.buttonChart_KAN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.buttonChart_KAN.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonChart_KAN.Location = new System.Drawing.Point(1154, 20);
+            this.buttonChart_KAN.Name = "buttonChart_KAN";
+            this.buttonChart_KAN.Size = new System.Drawing.Size(136, 56);
+            this.buttonChart_KAN.TabIndex = 1;
+            this.buttonChart_KAN.Text = "Показать";
+            this.buttonChart_KAN.UseVisualStyleBackColor = false;
+            this.buttonChart_KAN.Click += new System.EventHandler(this.buttonChart_KAN_Click);
+            // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -557,7 +857,16 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             this.panel2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -620,5 +929,30 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDZ;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnST;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnOBR;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button buttonAnaliz;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxSrdn;
+        private System.Windows.Forms.TextBox textBoxKol;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox textBoxMENEDG;
+        private System.Windows.Forms.TextBox textBoxGEOLOG;
+        private System.Windows.Forms.TextBox textBoxSECR;
+        private System.Windows.Forms.TextBox textBoxBUG;
+        private System.Windows.Forms.Button buttonAnaliz2;
+        private System.Windows.Forms.Button buttonChart_KAN;
     }
 }

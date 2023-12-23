@@ -44,7 +44,8 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
 
                     dataGridViewRabotniki_KAN.Rows.Add(values);
                 }
-                
+                dataGridViewRabotniki_KAN.Rows.RemoveAt(0);
+
             }
             
 
@@ -140,7 +141,7 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
                 if (row.Cells["ColumnF"].Value != null && row.Cells["ColumnI"].Value != null)
                 {
                     string column2Text = row.Cells["ColumnF"].Value.ToString().ToLower();
-                    string column3Text = row.Cells["ColumnO"].Value.ToString().ToLower();
+                    string column3Text = row.Cells["ColumnI"].Value.ToString().ToLower();
 
                     if (column2Text.Contains(searchText) || column3Text.Contains(searchText))
                     {
@@ -152,6 +153,149 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
                     }
                 }
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem != null)
+            {
+                int columnIndex = 7;
+                string selectedItem = comboBox1.SelectedItem.ToString();
+                foreach (DataGridViewRow row in dataGridViewRabotniki_KAN.Rows)
+                {
+                    int cellValue;
+                    if (row.Cells[columnIndex].Value != null && int.TryParse(row.Cells[columnIndex].Value.ToString(), out cellValue))
+                    {
+                        row.Cells[columnIndex].Value = cellValue;
+                    }
+                }
+                try
+                {
+                    DataGridViewColumn column = dataGridViewRabotniki_KAN.Columns[7];
+
+                    if (selectedItem == "по возрастанию")
+                    {
+                        dataGridViewRabotniki_KAN.Sort(column, ListSortDirection.Ascending);
+                    }
+                    if (selectedItem == "по убыванию")
+                    {
+                        dataGridViewRabotniki_KAN.Sort(column, ListSortDirection.Descending);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Невозможно выполнить сортировку", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void buttonAnaliz_Click(object sender, EventArgs e)
+        {
+            {
+                int rows = dataGridViewRabotniki_KAN.RowCount;
+                int columns = dataGridViewRabotniki_KAN.ColumnCount;
+                string str;
+                string[,] matrix = new string[rows, columns];
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < columns; j++)
+                    {
+                        str = "";
+                        str += dataGridViewRabotniki_KAN.Rows[i].Cells[j].Value;
+                        matrix[i, j] = str;
+                    }
+
+                }
+
+                int k = 0;
+
+                for (int i = 0; i < rows - 1; i++)
+                {
+                    k++;
+                    textBoxKol.Text = k.ToString();
+                }
+            }
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void buttonAnaliz2_Click(object sender, EventArgs e)
+        {
+
+            int rows = dataGridViewRabotniki_KAN.RowCount;
+            int columns = dataGridViewRabotniki_KAN.ColumnCount;
+            string str;
+            string[,] matrix = new string[rows, columns];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    str = "";
+                    str += dataGridViewRabotniki_KAN.Rows[i].Cells[j].Value;
+                    matrix[i, j] = str;
+                }
+
+            }
+
+
+            int b = 0;
+            int ii = 0;
+            int ss = 0;
+            int mm = 0;
+
+            for (int i = 0; i < rows - 1; i++)
+            {
+                if (matrix[i, 3] == "бухгалтер")
+                {
+                    b++;
+                }
+                if (matrix[i, 3] == "геолог-нефтяник")
+                {
+                    ii++;
+                }
+                if (matrix[i, 3] == "секретарь")
+                {
+                    ss++;
+                }
+                if (matrix[i, 3] == "менеджер")
+                {
+                    mm++;
+                }
+            }
+            textBoxBUG.Text = b.ToString();
+            textBoxGEOLOG.Text = ii.ToString();
+            textBoxSECR.Text = ss.ToString();
+            textBoxMENEDG.Text = mm.ToString();
+
+        }
+
+        private void buttonChart_KAN_Click(object sender, EventArgs e)
+        {
+            chart1.Series[0].Points.Clear();
+            chart1.Series[1].Points.Clear();
+            chart1.Series[2].Points.Clear();
+            chart1.Series[3].Points.Clear();
+            for (int i = 0; i < dataGridViewRabotniki_KAN.RowCount - 1; i++)
+            {
+                chart1.Series[1].Points.AddXY(i + 1, dataGridViewRabotniki_KAN.Rows[i].Cells[5].Value);
+            }
+            //chart1.Series[0].Points.AddXY(1, Convert.ToInt32(textBoxBUG.Text));
+            //chart1.Series[1].Points.AddXY(2, Convert.ToInt32(textBoxGEOLOG.Text));
+            //chart1.Series[2].Points.AddXY(3, Convert.ToInt32(textBoxSECR.Text));
+            //chart1.Series[3].Points.AddXY(4, Convert.ToInt32(textBoxMENEDG.Text));
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+            //
         }
     }
     
