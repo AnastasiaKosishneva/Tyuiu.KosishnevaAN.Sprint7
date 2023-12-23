@@ -32,10 +32,10 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
         
         private void button2_Click(object sender, EventArgs e) //ОТКРЫТЬ базу данных
         {
-            dataGridViewRabotniki_KAN.ColumnCount = 8;
+            dataGridViewRabotniki_KAN.ColumnCount = 9;
 
             
-            using (var reader = new StreamReader("encoded-база данных (2).csv"))                 
+            using (var reader = new StreamReader("БАЗА ДАННЫХ.csv"))                 
             {
                 while (!reader.EndOfStream)
                 {
@@ -44,6 +44,7 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
 
                     dataGridViewRabotniki_KAN.Rows.Add(values);
                 }
+                
             }
             
 
@@ -57,55 +58,35 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
 
         private void button1_Click_1(object sender, EventArgs e) // ДОБАВЛЕНИЕ
         {
-            string name = textBoxFOI_KAN.Text;
-            string position = textBoxDolgn_KAN.Text;
-            string specialization = textBoxTel_KAN.Text;
+            string fame = textBoxF_KAN.Text;
+            string name = textBoxI_KAN.Text;
+            string otestv = textBoxO_KAN.Text;
+            string dolgnost = textBoxD.Text;
+            string telephon = textBoxN_KAN.Text;
+            string datarogd = textBoxDR_KAN.Text;
+            string datazachisl = textBoxDZ_KAN.Text;
+            string stag = textBoxST_KAN.Text;
+            string obr = textBoxOBR_KAN.Text;
+
             // заполнение
-            dataGridViewRabotniki_KAN.Rows.Add(name, position, specialization);
-            textBoxFOI_KAN.Text = "";
-            textBoxDolgn_KAN.Text = "";
-            textBoxTel_KAN.Text = "";
+            dataGridViewRabotniki_KAN.Rows.Add(fame, name, otestv, dolgnost, telephon, datarogd, datazachisl, stag, obr);
+            textBoxF_KAN.Text = "";
+            textBoxI_KAN.Text = "";
+            textBoxO_KAN.Text = "";
+            textBoxD.Text = "";
+            textBoxN_KAN.Text = "";
+            textBoxDR_KAN.Text = "";
+            textBoxDZ_KAN.Text = "";
+            textBoxST_KAN.Text = "";
+            textBoxOBR_KAN.Text = "";
             dataGridViewRabotniki_KAN.CurrentCell = dataGridViewRabotniki_KAN.Rows[dataGridViewRabotniki_KAN.Rows.Count - 1].Cells[0];
+
+
         }
 
         private void buttonPOISK_KAN_Click(object sender, EventArgs e) // ПОИСК
         {
-            string searchText = textBoxPOISK_KAN.Text.ToLower(); // Приведение введенного текста к нижнему регистру
-
-            // Проверка, является ли строка поиска пустой
-            if (string.IsNullOrWhiteSpace(searchText))
-            {
-                // Возвращение оригинального стиля для всех ячеек
-                foreach (DataGridViewRow row in dataGridViewRabotniki_KAN.Rows)
-                {
-                    foreach (DataGridViewCell cell in row.Cells)
-                    {
-                        cell.Style.BackColor = dataGridViewRabotniki_KAN.DefaultCellStyle.BackColor;
-                        cell.Style.ForeColor = dataGridViewRabotniki_KAN.DefaultCellStyle.ForeColor;
-                    }
-                }
-                return;
-            }
-
-            // Проход по каждой ячейке в dataGridViewPC_SIA
-            foreach (DataGridViewRow row in dataGridViewRabotniki_KAN.Rows)
-            {
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    if (cell.Value != null && cell.Value.ToString().ToLower().Contains(searchText))
-                    {
-                        // Подсветка совпадающего слова
-                        cell.Style.BackColor = Color.Silver;
-                        cell.Style.ForeColor = Color.Black;
-                    }
-                    else
-                    {
-                        // Возвращение оригинального стиля ячейки
-                        cell.Style.BackColor = dataGridViewRabotniki_KAN.DefaultCellStyle.BackColor;
-                        cell.Style.ForeColor = dataGridViewRabotniki_KAN.DefaultCellStyle.ForeColor;
-                    }
-                }
-            }
+            //
         }
 
         private void button1_Click_2(object sender, EventArgs e) // УДАЛИТЬ 
@@ -118,6 +99,59 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
                 dataGridViewRabotniki_KAN.Rows.RemoveAt(index);
             }
             ;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void dataGridViewRabotniki_KAN_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //
+        }
+
+        private void buttonDob_VKL_Click(object sender, EventArgs e)
+        {
+            //groupBoxADD_KAN
+            groupBoxADD_KAN.Enabled = true;
+            buttonADD_KAN.Enabled = true;
+            buttonDob_VKL.Enabled = 
+            button3.Enabled = true;
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            groupBoxADD_KAN.Enabled = false;
+            buttonADD_KAN.Enabled = false;
+        }
+
+        private void textBoxPOISK_KAN_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = textBoxPOISK_KAN.Text.ToLower(); //приведение к нижнему регистру
+            foreach (DataGridViewRow row in dataGridViewRabotniki_KAN.Rows)
+            {
+                if (row.Cells["ColumnF"].Value != null && row.Cells["ColumnI"].Value != null)
+                {
+                    string column2Text = row.Cells["ColumnF"].Value.ToString().ToLower();
+                    string column3Text = row.Cells["ColumnO"].Value.ToString().ToLower();
+
+                    if (column2Text.Contains(searchText) || column3Text.Contains(searchText))
+                    {
+                        row.Visible = true;
+                    }
+                    else
+                    {
+                        row.Visible = false;
+                    }
+                }
+            }
         }
     }
     
