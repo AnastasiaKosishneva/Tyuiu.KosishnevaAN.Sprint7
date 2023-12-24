@@ -30,10 +30,31 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11.Lib
             }
             return matrix;
         }
-        //public string[,] min(string a)
-        //{
 
-        //}
 
+        public int MIN(string[,] array, int id)
+        {
+            int min = 100000000;
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                try
+                {
+                    if (Convert.ToInt32(array[i, 2]) == id)
+                    {
+                        try
+                        {
+                            min = Math.Min(min, Convert.ToInt32(array[i, 7]));
+                        }
+                        catch { }
+                    }
+                }
+                catch { };
+                if (min == 100000000)
+                {
+                    min = 0;
+                }
+            }
+            return min;
+        }
     }
 }

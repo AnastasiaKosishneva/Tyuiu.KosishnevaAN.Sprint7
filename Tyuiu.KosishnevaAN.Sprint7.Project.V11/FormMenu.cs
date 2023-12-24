@@ -273,21 +273,20 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
                     }
 
                 }
-                double summalet = 0;
-                double k = 0;
+
+                int summalet = 0;
+                int k = 0;
                 double srzn = 0;
                 for (int i = 0; i < rows - 1; i++)
                 {
+                    summalet += Convert.ToInt32(dataGridViewRabotniki_KAN.Rows[i].Cells[7].Value);
                     k++;
                     textBoxKol.Text = k.ToString();
-                }
-                for (int i = 0; i < rows - 1; i++)
-                {
-                    summalet = summalet + Convert.ToDouble(dataGridViewRabotniki_KAN.Rows[i].Cells[7].Value);
+
                 }
                 srzn = (summalet / k);
-                srzn = Math.Round(srzn, 3);
-                textBoxSrdn.Text = srzn.ToString();
+                //srzn = Math.Round(srzn, 3);
+                //textBoxSrdn.Text = srzn.ToString();
             }
         }
     private void textBox4_TextChanged(object sender, EventArgs e)
@@ -376,6 +375,10 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
         
         private void buttonChart_KAN_Click(object sender, EventArgs e)
         {
+            int min = 0;
+            
+            textBoxBUG.Text = min.ToString();
+
             int b = 0;
             int ii = 0;
             int ss = 0;
@@ -384,11 +387,11 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             int glbug = 0;
             int ekonom = 0;
             int kadrovik = 0;
-            //string matrix = ds.LoadFromDataFile();
             int rows = dataGridViewRabotniki_KAN.RowCount;
             int columns = dataGridViewRabotniki_KAN.ColumnCount;
             string str;
             string[,] matrix = new string[rows, columns];
+            string[] matrixx;
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
@@ -396,10 +399,17 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
                     str = "";
                     str += dataGridViewRabotniki_KAN.Rows[i].Cells[j].Value;
                     matrix[i, j] = str;
+
+                    if (j == 7)
+                    {
+                        str = "";
+                        str = str + dataGridViewRabotniki_KAN.Rows[i].Cells[j].Value;
+                        //matrixx = matrixx.Append(str);
+                    }
                 }
 
             }
-
+            
             for (int i = 0; i < rows - 1; i++)
             {
                 if (matrix[i, 3] == "бухгалтер")
@@ -436,37 +446,26 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
                 }
             }
             // Data arrays.
-            string[] seriesArray = { "бухгалтер", "геолог - нефтяник", "секретарь", "менеджер" };
-            int[] pointsArray = { b, ii, ss, mm};
+            string[] seriesArray = { "бухгалтер", "геолог - нефтяник", "секретарь", "менеджер", "землеустроитель", "Главный бухгалтер", "экоаналитик", "кадровик" };
+            int[] pointsArray = { b, ii, ss, mm, zeml, glbug, ekonom, kadrovik};
 
             // Set palette.
-            this.chart1.Palette = ChartColorPalette.SeaGreen;
+            chart1.Palette = ChartColorPalette.SeaGreen;
 
             // Set title.
-            this.chart1.Titles.Add("Должности");
+            chart1.Titles.Add("Должности");
+            chart1.ChartAreas[0].AxisX.Interval = 2;
+
 
             // Add series.
             for (int i = 0; i < seriesArray.Length; i++)
             {
                 // Add series.
-                Series series = this.chart1.Series.Add(seriesArray[i]);
-
+                Series series = chart1.Series.Add(seriesArray[i]);
+                //chart1.Series[0].Points.AddXY(dataGridViewRabotniki_KAN.Rows[i].Cells[0].Value, dataGridViewRabotniki_KAN.Rows[i].Cells[7].Value);
                 // Add point.
                 series.Points.Add(pointsArray[i]);
             }
-
-            //chart1.Series[0].Points.Clear();
-            //chart1.Series[1].Points.Clear();
-            //chart1.Series[2].Points.Clear();
-            //chart1.Series[3].Points.Clear();
-            //for (int i = 0; i < dataGridViewRabotniki_KAN.RowCount - 1; i++)
-            //{
-            //    chart1.Series[0].Points.AddXY(i + 1, dataGridViewRabotniki_KAN.Rows[i].Cells[5].Value);
-            //}
-            //chart1.Series[0].Points.AddXY(1, Convert.ToInt32(textBoxBUG.Text));
-            //chart1.Series[1].Points.AddXY(2, Convert.ToInt32(textBoxGEOLOG.Text));
-            //chart1.Series[2].Points.AddXY(3, Convert.ToInt32(textBoxSECR.Text));
-            //chart1.Series[3].Points.AddXY(4, Convert.ToInt32(textBoxMENEDG.Text));
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
