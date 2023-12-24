@@ -47,11 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="FormPusk.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormPusk.Designer.cs">
+      <DependentUpon>FormPusk.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMenu.cs">
       <SubType>Form</SubType>
@@ -61,8 +61,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Raszrabochik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Raszrabochik.Designer.cs">
+      <DependentUpon>Raszrabochik.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormPusk.resx">
+      <DependentUpon>FormPusk.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
@@ -76,6 +82,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Raszrabochik.resx">
+      <DependentUpon>Raszrabochik.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

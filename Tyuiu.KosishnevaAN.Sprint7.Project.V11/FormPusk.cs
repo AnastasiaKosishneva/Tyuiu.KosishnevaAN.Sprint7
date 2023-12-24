@@ -23,5 +23,12 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             FormMenu formMenu = new FormMenu();
             formMenu.Show();
         }
+
+        private void buttonSpravka_KAN_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Raszrabochik raszrabochik = new Raszrabochik();
+            raszrabochik.Show();
+        }
     }
 }

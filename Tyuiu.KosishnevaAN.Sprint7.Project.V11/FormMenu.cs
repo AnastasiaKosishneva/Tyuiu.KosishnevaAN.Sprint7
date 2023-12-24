@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Tyuiu.KosishnevaAN.Sprint7.Project.V11.Lib;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
 {
@@ -29,32 +30,102 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             //
         }
         DataService ds = new DataService();
-        
+        static string openFilePath;
+        static int rows;
+        static int columns;
         private void button2_Click(object sender, EventArgs e) //ОТКРЫТЬ базу данных
         {
-            dataGridViewRabotniki_KAN.ColumnCount = 9;
 
-            
-            using (var reader = new StreamReader("БАЗА ДАННЫХ.csv"))                 
+            try
             {
-                while (!reader.EndOfStream)
+                openFileDialogBD.ShowDialog();
+                openFilePath = openFileDialogBD.FileName;
+
+                string[,] matrix = ds.LoadFromDataFile(openFilePath);
+
+                rows = matrix.GetLength(0);
+                columns = matrix.GetLength(1);
+
+                dataGridViewRabotniki_KAN.RowCount = rows + 1;
+                dataGridViewRabotniki_KAN.ColumnCount = columns;
+
+                //добавление данных
+                for (int i = 0; i < rows; i++)
                 {
-                    var line = reader.ReadLine();
-                    var values = line.Split(';');
-
-                    dataGridViewRabotniki_KAN.Rows.Add(values);
+                    for (int j = 0; j < columns; j++)
+                    {
+                        dataGridViewRabotniki_KAN.Rows[i].Cells[j].Value = matrix[i, j];
+                    }
                 }
+                dataGridViewRabotniki_KAN.AutoResizeColumns();
+                dataGridViewRabotniki_KAN.ScrollBars = ScrollBars.Both;
                 dataGridViewRabotniki_KAN.Rows.RemoveAt(0);
-
             }
-            
+            catch
+            {
+                MessageBox.Show("Файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            //dataGridViewRabotniki_KAN.ColumnCount = 9;
+
+
+            //using (var reader = new StreamReader("БАЗА ДАННЫХ.csv"))                 
+            //{
+            //    while (!reader.EndOfStream)
+            //    {
+            //        var line = reader.ReadLine();
+            //        var values = line.Split(';');
+
+            //        dataGridViewRabotniki_KAN.Rows.Add(values);
+            //    }
+            //    dataGridViewRabotniki_KAN.Rows.RemoveAt(0);
+
+            //}
+
 
         }
 
         private void buttonPLUS_KAN_Click(object sender, EventArgs e)  //СОХРАНЕНИЕ
         {
-            //
-               
+            saveFileDialogBD.FileName = openFilePath;
+            saveFileDialogBD.InitialDirectory = Directory.GetCurrentDirectory();
+            saveFileDialogBD.ShowDialog();
+
+            string path = saveFileDialogBD.FileName;
+
+            FileInfo fileInfo = new FileInfo(path);
+            bool fileExists = fileInfo.Exists;
+
+            if (fileExists)
+            {
+                File.Delete(path);
+            }
+
+            int rows = dataGridViewRabotniki_KAN.RowCount;
+            int columns = dataGridViewRabotniki_KAN.ColumnCount;
+
+            string str = "";
+
+
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    if (j != columns - 1)
+                    {
+                        str = str + dataGridViewRabotniki_KAN.Rows[i].Cells[j].Value + ";";
+                    }
+                    else
+                    {
+                        str = str + dataGridViewRabotniki_KAN.Rows[i].Cells[j].Value;
+                    }
+                }
+                File.AppendAllText(path, str + Environment.NewLine);
+                str = "";
+            }
+
         }
 
         private void button1_Click_1(object sender, EventArgs e) // ДОБАВЛЕНИЕ
@@ -102,10 +173,6 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             ;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //
-        }
 
         private void tabPage2_Click(object sender, EventArgs e)
         {
@@ -189,7 +256,7 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             }
         }
 
-        private void buttonAnaliz_Click(object sender, EventArgs e)
+        private void buttonAnaliz_Click(object sender, EventArgs e) // количество работников, средний стаж
         {
             {
                 int rows = dataGridViewRabotniki_KAN.RowCount;
@@ -206,18 +273,24 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
                     }
 
                 }
-
-                int k = 0;
-
+                double summalet = 0;
+                double k = 0;
+                double srzn = 0;
                 for (int i = 0; i < rows - 1; i++)
                 {
                     k++;
                     textBoxKol.Text = k.ToString();
                 }
+                for (int i = 0; i < rows - 1; i++)
+                {
+                    summalet = summalet + Convert.ToDouble(dataGridViewRabotniki_KAN.Rows[i].Cells[7].Value);
+                }
+                srzn = (summalet / k);
+                srzn = Math.Round(srzn, 3);
+                textBoxSrdn.Text = srzn.ToString();
             }
         }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
+    private void textBox4_TextChanged(object sender, EventArgs e)
         {
             //
         }
@@ -226,10 +299,18 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
         {
             //
         }
-
+        
         private void buttonAnaliz2_Click(object sender, EventArgs e)
         {
-
+            int b = 0;
+            int ii = 0;
+            int ss = 0;
+            int mm = 0;
+            int zeml = 0;
+            int glbug = 0;
+            int ekonom = 0;
+            int kadrovik = 0;
+            //string matrix = ds.LoadFromDataFile();
             int rows = dataGridViewRabotniki_KAN.RowCount;
             int columns = dataGridViewRabotniki_KAN.ColumnCount;
             string str;
@@ -244,12 +325,80 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
                 }
 
             }
-
-
+            
+            for (int i = 0; i < rows - 1; i++)
+            {
+                if (matrix[i, 3] == "бухгалтер")
+                {
+                    b++;
+                }
+                if (matrix[i, 3] == "геолог-нефтяник")
+                {
+                    ii++;
+                }
+                if (matrix[i, 3] == "секретарь")
+                {
+                    ss++;
+                }
+                if (matrix[i, 3] == "менеджер")
+                {
+                    mm++;
+                }
+                if (matrix[i, 3] == "землеустроитель")
+                {
+                    zeml++;
+                }
+                if (matrix[i, 3] == "Главный бухгалтер")
+                {
+                    glbug++;
+                }
+                if (matrix[i, 3] == "экоаналитик")
+                {
+                    ekonom++;
+                }
+                if (matrix[i, 3] == "кадровик")
+                {
+                    kadrovik++;
+                }
+            }
+            textBoxBUG.Text = b.ToString();
+            textBoxGEOLOG.Text = ii.ToString();
+            textBoxSECR.Text = ss.ToString();
+            textBoxMENEDG.Text = mm.ToString();
+            textBoxZEML.Text = zeml.ToString();
+            textBoxGLBUG.Text = glbug.ToString();
+            textBoxEKOanalitic.Text = ekonom.ToString();
+            textBoxKADRovik.Text = kadrovik.ToString();
+        }
+        public string[,] valueArray;
+        public int routeId;
+        
+        
+        private void buttonChart_KAN_Click(object sender, EventArgs e)
+        {
             int b = 0;
             int ii = 0;
             int ss = 0;
             int mm = 0;
+            int zeml = 0;
+            int glbug = 0;
+            int ekonom = 0;
+            int kadrovik = 0;
+            //string matrix = ds.LoadFromDataFile();
+            int rows = dataGridViewRabotniki_KAN.RowCount;
+            int columns = dataGridViewRabotniki_KAN.ColumnCount;
+            string str;
+            string[,] matrix = new string[rows, columns];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    str = "";
+                    str += dataGridViewRabotniki_KAN.Rows[i].Cells[j].Value;
+                    matrix[i, j] = str;
+                }
+
+            }
 
             for (int i = 0; i < rows - 1; i++)
             {
@@ -269,24 +418,51 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
                 {
                     mm++;
                 }
+                if (matrix[i, 3] == "землеустроитель")
+                {
+                    zeml++;
+                }
+                if (matrix[i, 3] == "Главный бухгалтер")
+                {
+                    glbug++;
+                }
+                if (matrix[i, 3] == "экоаналитик")
+                {
+                    ekonom++;
+                }
+                if (matrix[i, 3] == "кадровик")
+                {
+                    kadrovik++;
+                }
             }
-            textBoxBUG.Text = b.ToString();
-            textBoxGEOLOG.Text = ii.ToString();
-            textBoxSECR.Text = ss.ToString();
-            textBoxMENEDG.Text = mm.ToString();
+            // Data arrays.
+            string[] seriesArray = { "бухгалтер", "геолог - нефтяник", "секретарь", "менеджер" };
+            int[] pointsArray = { b, ii, ss, mm};
 
-        }
+            // Set palette.
+            this.chart1.Palette = ChartColorPalette.SeaGreen;
 
-        private void buttonChart_KAN_Click(object sender, EventArgs e)
-        {
-            chart1.Series[0].Points.Clear();
-            chart1.Series[1].Points.Clear();
-            chart1.Series[2].Points.Clear();
-            chart1.Series[3].Points.Clear();
-            for (int i = 0; i < dataGridViewRabotniki_KAN.RowCount - 1; i++)
+            // Set title.
+            this.chart1.Titles.Add("Должности");
+
+            // Add series.
+            for (int i = 0; i < seriesArray.Length; i++)
             {
-                chart1.Series[1].Points.AddXY(i + 1, dataGridViewRabotniki_KAN.Rows[i].Cells[5].Value);
+                // Add series.
+                Series series = this.chart1.Series.Add(seriesArray[i]);
+
+                // Add point.
+                series.Points.Add(pointsArray[i]);
             }
+
+            //chart1.Series[0].Points.Clear();
+            //chart1.Series[1].Points.Clear();
+            //chart1.Series[2].Points.Clear();
+            //chart1.Series[3].Points.Clear();
+            //for (int i = 0; i < dataGridViewRabotniki_KAN.RowCount - 1; i++)
+            //{
+            //    chart1.Series[0].Points.AddXY(i + 1, dataGridViewRabotniki_KAN.Rows[i].Cells[5].Value);
+            //}
             //chart1.Series[0].Points.AddXY(1, Convert.ToInt32(textBoxBUG.Text));
             //chart1.Series[1].Points.AddXY(2, Convert.ToInt32(textBoxGEOLOG.Text));
             //chart1.Series[2].Points.AddXY(3, Convert.ToInt32(textBoxSECR.Text));
@@ -295,6 +471,13 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
+            //
+        }
+
+        private void tabPage4_Click(object sender, EventArgs e)
+        {
+
+
             //
         }
     }
