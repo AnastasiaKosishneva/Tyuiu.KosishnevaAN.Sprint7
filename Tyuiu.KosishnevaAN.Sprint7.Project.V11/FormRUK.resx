@@ -117,4 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Приложение имеет следующий функционал:
+добавление таблицы из CSV файла, добавление новых строк
+в таблицу, удаоение срок из таблицы в csv файл, сортировка..
+
+Для функционала использваны библиотека классов и unit-test
+</value>
+  </data>
 </root>

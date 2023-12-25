@@ -31,30 +31,47 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11.Lib
             return matrix;
         }
 
-
-        public int MIN(string[,] array, int id)
+        public int MIN(string[,] matrix, int id)
         {
-            int min = 100000000;
-            for (int i = 0; i < array.GetLength(0); i++)
+            
+            int min = int.MaxValue;
+            for (int i = 0; i < matrix.GetLength(0)-1; i++)
             {
-                try
+                for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    if (Convert.ToInt32(array[i, 2]) == id)
+                    if (j == id)
                     {
-                        try
+                        
+                        if ( Convert.ToInt32(matrix[i, j]) < min )
                         {
-                            min = Math.Min(min, Convert.ToInt32(array[i, 7]));
+                            min = Convert.ToInt32(matrix[i, j]);
                         }
-                        catch { }
                     }
-                }
-                catch { };
-                if (min == 100000000)
-                {
-                    min = 0;
                 }
             }
             return min;
         }
+        
+        public int MAX(string[,] matrix, int id)
+        {
+            int max = int.MinValue;
+            for (int i = 0; i < matrix.GetLength(1) - 1; i++)
+            {
+                for (int j = 0; j < matrix.GetLength(0); j++)
+                {
+                    if (j == id)
+                    {
+
+                        if (Convert.ToInt32(matrix[i, j]) > max)
+                        {
+                            max = Convert.ToInt32(matrix[i, j]);
+                        }
+                    }
+                }
+            }
+            return max;
+        }
+
+
     }
 }

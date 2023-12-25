@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
 {
-    public partial class Form1 : Form
+    public partial class FormRUK : Form
     {
-        public Form1()
+        public FormRUK()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ///
-
         }
     }
 }

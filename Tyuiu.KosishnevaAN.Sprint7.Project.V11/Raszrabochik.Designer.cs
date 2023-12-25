@@ -55,7 +55,7 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(575, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(272, 39);
+            this.label1.Size = new System.Drawing.Size(264, 38);
             this.label1.TabIndex = 1;
             this.label1.Text = "О разработчике";
             // 
@@ -110,7 +110,7 @@ namespace Tyuiu.KosishnevaAN.Sprint7.Project.V11
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Raszrabochik";
-            this.Text = "++++++++++++++";
+            this.Text = "о разработчике ";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
